@@ -27,6 +27,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
     </properties>
 
     <developers>
@@ -43,7 +45,7 @@
             <dependency>
                 <groupId>com.github.lizhiwei88</groupId>
                 <artifactId>core</artifactId>
-                <version>0.1-SNAPSHOT</version>
+                <version>${version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
