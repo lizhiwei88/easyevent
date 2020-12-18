@@ -38,7 +38,7 @@ class EventDispatcherTest {
         OutBoundEvent outBoundEvent = new OutBoundEvent<ClientTest>() {
 
             private String parameter = "parameter";
-
+            @Override
             public void execute(ClientTest client) {
                 System.out.println("execute parameter: " + parameter + " clientId: " + client.getId());
             }

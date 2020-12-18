@@ -29,6 +29,7 @@ class EventHandlerTest {
         EventHandler<ClientTest> eventHandler = new EventHandler<ClientTest>();
 
         eventHandler.subscribe("login", new InBoundEvent<ClientTest>() {
+            @Override
             public void execute(ClientTest client, Object parameter) {
                 System.out.println("login event");
                 client.test();

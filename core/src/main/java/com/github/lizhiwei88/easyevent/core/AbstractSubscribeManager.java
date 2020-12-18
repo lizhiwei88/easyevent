@@ -27,14 +27,17 @@ public abstract class AbstractSubscribeManager<E> implements SubscribeManager<E>
 
     protected final ConcurrentMap<String, E> observerMap = new ConcurrentHashMap<String, E>();
 
+    @Override
     public void subscribe(String name, E object) {
         observerMap.put(name, object);
     }
 
+    @Override
     public void unsubscribe(String name) {
         observerMap.remove(name);
     }
 
+    @Override
     public boolean containsName(String name) {
         return observerMap.containsKey(name);
     }
