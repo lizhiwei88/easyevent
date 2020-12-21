@@ -26,6 +26,7 @@ public interface InBoundEvent<E> {
      *
      * @param client    客户
      * @param parameter 参数
+     * @throws Exception exception
      */
-    void execute(E client, Object parameter);
+    void execute(E client, Object parameter) throws Exception;
 }
