@@ -24,7 +24,7 @@ import org.junit.jupiter.api.Test;
 class EventHandlerTest {
 
     @Test
-    void test() {
+    void test() throws Exception {
         EventHandler<ClientTest> eventHandler = new EventHandler<ClientTest>();
 
         eventHandler.subscribe("login", new InBoundEvent<ClientTest>() {
