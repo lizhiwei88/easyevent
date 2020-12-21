@@ -29,7 +29,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 13:01
  **/
 
 @Component

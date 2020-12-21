@@ -25,7 +25,6 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 13:00
  **/
 @Configuration
 @EnableWebSocket

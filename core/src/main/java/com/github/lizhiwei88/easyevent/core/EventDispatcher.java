@@ -25,14 +25,13 @@ import java.util.Map;
  * 事件分发器
  *
  * @author lizhiwei
- * @date 2020/12/14 13:10
  **/
 public class EventDispatcher<E> extends AbstractSubscribeManager<E> {
 
     /**
      * 发布事件给所有监听者
      *
-     * @param event
+     * @param event 事件
      */
     public void publish(OutBoundEvent event) {
         if (!(event instanceof OutBoundEvent)) {

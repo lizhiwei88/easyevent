@@ -18,7 +18,6 @@ package com.github.lizhiwei88.easyevent.evnet;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 13:30
  **/
 public interface InBoundEvent<E> {
 
@@ -27,6 +26,7 @@ public interface InBoundEvent<E> {
      *
      * @param client    客户
      * @param parameter 参数
+     * @throws Exception exception
      */
-    void execute(E client, Object parameter);
+    void execute(E client, Object parameter) throws Exception;
 }

@@ -18,30 +18,29 @@ package com.github.lizhiwei88.easyevent.core;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 16:59
  **/
 public interface SubscribeManager<E> {
 
     /**
      * 订阅
      *
-     * @param name
-     * @param object
+     * @param name 名称
+     * @param object 对象
      */
     void subscribe(String name, E object);
 
     /**
      * 取消订阅
      *
-     * @param name
+     * @param name 名称
      */
     void unsubscribe(String name);
 
     /**
      * 是否订阅
      *
-     * @param name
-     * @return
+     * @param name 名称
+     * @return 订阅状态
      */
     boolean containsName(String name);
 

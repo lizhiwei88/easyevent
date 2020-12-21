@@ -24,7 +24,6 @@ import java.io.IOException;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 14:42
  **/
 public class BroadcastEvent implements OutBoundEvent<WebSocketSession> {
 

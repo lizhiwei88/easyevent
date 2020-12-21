@@ -26,7 +26,6 @@ import org.springframework.context.annotation.Import;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 9:35
  **/
 @Configuration
 @ConditionalOnClass({EventDispatcher.class, EventHandler.class})
