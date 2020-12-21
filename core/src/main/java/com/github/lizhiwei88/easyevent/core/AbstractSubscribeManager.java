@@ -21,7 +21,6 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 17:08
  **/
 public abstract class AbstractSubscribeManager<E> implements SubscribeManager<E> {
 

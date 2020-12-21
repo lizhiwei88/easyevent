@@ -20,10 +20,16 @@ import com.github.lizhiwei88.easyevent.evnet.InBoundEvent;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 16:27
  **/
 public class EventHandler<E> extends AbstractSubscribeManager<InBoundEvent> {
 
+    /**
+     * 入站事件匹配执行
+     *
+     * @param name 事件名称
+     * @param client 当前客户
+     * @param parameter 入站参数
+     */
     public void onEvent(String name, E client, Object parameter) {
         InBoundEvent event = observerMap.get(name);
         event.execute(client, parameter);

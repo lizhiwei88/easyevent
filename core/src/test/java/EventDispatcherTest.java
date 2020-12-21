@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 13:42
  **/
 class EventDispatcherTest {
 

@@ -18,7 +18,6 @@ package com.github.lizhiwei88.easyevent.exception;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 9:17
  **/
 public class EventTypeException extends RuntimeException {
     public EventTypeException(String message) {

@@ -25,7 +25,6 @@ import java.io.IOException;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 11:07
  **/
 @EasyEvent("login")
 public class LoginEasyEvent implements InBoundEvent<WebSocketSession> {

@@ -7,10 +7,10 @@
     <parent>
         <artifactId>easyevent</artifactId>
         <groupId>com.github.lizhiwei88</groupId>
-        <version>0.1-SNAPSHOT</version>
+        <version>0.1</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>com.github.lizhiwei88</groupId>
     <artifactId>example</artifactId>
 
     <dependencies>
