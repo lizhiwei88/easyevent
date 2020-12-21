@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 14:41
  **/
 @Component
 public class EventRunner implements ApplicationRunner {
@@ -43,8 +42,8 @@ public class EventRunner implements ApplicationRunner {
     /**
      * 延时10秒向上线的所有人发送事件
      *
-     * @param args
-     * @throws Exception
+     * @param args 参数
+     * @throws Exception 异常
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {

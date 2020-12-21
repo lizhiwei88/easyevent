@@ -21,7 +21,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 11:03
  **/
 @SpringBootApplication
 public class EasyEventApplication {

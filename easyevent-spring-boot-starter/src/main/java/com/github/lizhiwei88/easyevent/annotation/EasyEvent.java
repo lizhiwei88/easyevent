@@ -25,17 +25,11 @@ import java.lang.annotation.Target;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 10:22
  **/
 @Component
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface EasyEvent {
 
-    /**
-     * 事件名称
-     *
-     * @return
-     */
     String value();
 }

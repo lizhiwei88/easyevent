@@ -29,7 +29,6 @@ import java.util.Map;
 
 /**
  * @author lizhiwei
- * @date 2020/12/15 10:40
  **/
 public class EasyEventSelector implements ApplicationContextAware, SmartInitializingSingleton {
 

@@ -18,7 +18,6 @@ import com.github.lizhiwei88.easyevent.evnet.OutBoundEvent;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 14:05
  **/
 public class ParameterListenerEvent implements OutBoundEvent<ClientTest> {
 

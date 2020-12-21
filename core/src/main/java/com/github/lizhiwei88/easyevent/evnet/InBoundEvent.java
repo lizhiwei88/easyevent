@@ -18,7 +18,6 @@ package com.github.lizhiwei88.easyevent.evnet;
 
 /**
  * @author lizhiwei
- * @date 2020/12/14 13:30
  **/
 public interface InBoundEvent<E> {
 
