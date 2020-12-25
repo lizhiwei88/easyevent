@@ -6,7 +6,7 @@
 
     <groupId>com.github.lizhiwei88</groupId>
     <artifactId>easyevent</artifactId>
-    <version>0.1.1</version>
+    <version>0.2</version>
     <packaging>pom</packaging>
     <description>
         A tool easy to handle events
@@ -44,7 +44,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.github.lizhiwei88</groupId>
-                <artifactId>core</artifactId>
+                <artifactId>easyevent-core</artifactId>
                 <version>${version}</version>
             </dependency>
         </dependencies>
@@ -129,18 +129,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- Nexus Staging Plugin, auto deploy close and release -->
-<!--                        <plugin>-->
-<!--                            <groupId>org.sonatype.plugins</groupId>-->
-<!--                            <artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--                            <version>1.6.3</version>-->
-<!--                            <extensions>true</extensions>-->
-<!--                            <configuration>-->
-<!--                                <serverId>oss</serverId>-->
-<!--                                <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
-<!--                                <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--                            </configuration>-->
-<!--                        </plugin>-->
                 </plugins>
             </build>
         </profile>

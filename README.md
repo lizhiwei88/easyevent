@@ -22,8 +22,8 @@ EasyEvent用于在异步场景下,对监听对象进行事件的通知处理.  �
 ```xml
 <dependency>
     <groupId>com.github.lizhiwei88</groupId>
-    <artifactId>core</artifactId>
-    <version>0.1</version>
+    <artifactId>easyevent-core</artifactId>
+    <version>0.2</version>
 </dependency>
 ```
 
@@ -134,7 +134,7 @@ public class DemoClass {
 <dependency>
     <groupId>com.github.lizhiwei88</groupId>
     <artifactId>easyevent-spring-boot-starter</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
 </dependency>
 ```
 

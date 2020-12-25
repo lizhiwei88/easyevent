@@ -7,17 +7,17 @@
     <parent>
         <groupId>com.github.lizhiwei88</groupId>
         <artifactId>easyevent</artifactId>
-        <version>0.1.1</version>
+        <version>0.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>core</artifactId>
+    <artifactId>easyevent-core</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
