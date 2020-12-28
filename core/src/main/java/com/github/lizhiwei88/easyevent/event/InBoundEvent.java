@@ -14,13 +14,21 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.exception;
+package com.github.lizhiwei88.easyevent.event;
 
 /**
+ * 入站事件
+ *
  * @author lizhiwei
  **/
-public class EventTypeException extends RuntimeException {
-    public EventTypeException(String message) {
-        super(message);
-    }
+public interface InBoundEvent<E> {
+
+    /**
+     * 事件业务
+     *
+     * @param client    客户
+     * @param parameter 参数
+     * @throws Exception exception
+     */
+    void execute(E client, Object parameter) throws Exception;
 }

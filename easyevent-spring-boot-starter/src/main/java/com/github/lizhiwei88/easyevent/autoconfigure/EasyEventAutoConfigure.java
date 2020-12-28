@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.autocinfigure;
+package com.github.lizhiwei88.easyevent.autoconfigure;
 
 import com.github.lizhiwei88.easyevent.core.EventDispatcher;
 import com.github.lizhiwei88.easyevent.core.EventHandler;

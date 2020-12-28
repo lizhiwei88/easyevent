@@ -7,7 +7,7 @@
     <parent>
         <groupId>com.github.lizhiwei88</groupId>
         <artifactId>easyevent</artifactId>
-        <version>0.1.1</version>
+        <version>0.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.github.lizhiwei88</groupId>
-            <artifactId>core</artifactId>
+            <artifactId>easyevent-core</artifactId>
         </dependency>
     </dependencies>
 

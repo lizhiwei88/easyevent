@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.autocinfigure;
+package com.github.lizhiwei88.easyevent.autoconfigure;
 
 import com.github.lizhiwei88.easyevent.annotation.EasyEvent;
 import com.github.lizhiwei88.easyevent.core.EventHandler;
-import org.springframework.beans.BeansException;
+import com.github.lizhiwei88.easyevent.event.InBoundEvent;
 import org.springframework.beans.factory.SmartInitializingSingleton;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -38,7 +38,7 @@ public class EasyEventSelector implements ApplicationContextAware, SmartInitiali
     private EventHandler eventHandler;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void setApplicationContext(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
@@ -46,12 +46,12 @@ public class EasyEventSelector implements ApplicationContextAware, SmartInitiali
     public void afterSingletonsInstantiated() {
         Map<String, Object> beansWithAnnotationMap = this.applicationContext.getBeansWithAnnotation(EasyEvent.class);
         for (Map.Entry<String, Object> entry : beansWithAnnotationMap.entrySet()) {
-            Object object = entry.getValue();
+            InBoundEvent inBoundEvent = (InBoundEvent) entry.getValue();
             String eventName = entry.getKey();
             if (StringUtils.isEmpty(eventName)) {
-                eventName = object.getClass().getSimpleName();
+                eventName = inBoundEvent.getClass().getSimpleName();
             }
-            eventHandler.subscribe(eventName, object);
+            eventHandler.subscribe(eventName, inBoundEvent);
         }
     }
 

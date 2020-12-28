@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.evnet;
+package com.github.lizhiwei88.easyevent.event;
 
 /**
+ * 出站事件
+ *
  * @author lizhiwei
  **/
 public interface OutBoundEvent<E> {
