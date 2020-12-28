@@ -17,7 +17,7 @@
 package com.github.lizhiwei88.easyevent.example.websocket.event;
 
 import com.github.lizhiwei88.easyevent.annotation.EasyEvent;
-import com.github.lizhiwei88.easyevent.evnet.InBoundEvent;
+import com.github.lizhiwei88.easyevent.event.InBoundEvent;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
