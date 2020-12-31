@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.example.websocket.event;
+package com.github.lizhiwei88.easyevent.example.websocket.event.in;
 
-import com.github.lizhiwei88.easyevent.event.OutBoundEvent;
+import com.github.lizhiwei88.easyevent.annotation.EasyEvent;
+import com.github.lizhiwei88.easyevent.core.EventDispatcher;
+import com.github.lizhiwei88.easyevent.event.InBoundEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -25,18 +28,20 @@ import java.io.IOException;
 /**
  * @author lizhiwei
  **/
-public class BroadcastEvent implements OutBoundEvent<WebSocketSession> {
+// 分组形式
+//@EasyEvent( value = "login" , group = "gust")
+@EasyEvent("login")
+public class LoginEasyEvent implements InBoundEvent<WebSocketSession> {
 
-    private String p;
-
-    public BroadcastEvent(String p) {
-        this.p = p;
-    }
+    @Autowired
+    private EventDispatcher<WebSocketSession> eventDispatcher;
 
     @Override
-    public void execute(WebSocketSession client) {
+    public void execute(WebSocketSession client, Object parameter) {
         try {
-            client.sendMessage(new TextMessage("broadcast event message" + p));
+            client.sendMessage(new TextMessage("login event, move to vip group"));
+            eventDispatcher.unsubscribe(client.getId());
+            eventDispatcher.subscribe(client.getId(), "vip", client);
         } catch (IOException e) {
             e.printStackTrace();
         }

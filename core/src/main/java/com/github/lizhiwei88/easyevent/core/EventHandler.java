@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * @author lizhiwei
  **/
-public class EventHandler<E> {
+public class EventHandler<E> implements EventObserver<InBoundEvent<E>> {
 
     private static final String SUBSCRIBE_NAME_DELIMITER = "-";
 
@@ -72,6 +72,7 @@ public class EventHandler<E> {
      * @param name  事件名称
      * @param event 事件
      */
+    @Override
     public void subscribe(String name, InBoundEvent<E> event) {
         observerMap.put(name, event);
     }
@@ -83,6 +84,7 @@ public class EventHandler<E> {
      * @param group 组名
      * @param event 事件
      */
+    @Override
     public void subscribe(String name, String group, InBoundEvent<E> event) {
         this.subscribe(getKey(name, group), event);
     }
@@ -93,6 +95,7 @@ public class EventHandler<E> {
      * @param name 事件名称
      * @return 移除的事件
      */
+    @Override
     public InBoundEvent<E> unsubscribe(String name) {
         return observerMap.remove(name);
     }
@@ -104,6 +107,7 @@ public class EventHandler<E> {
      * @param group 组名
      * @return 移除的事件
      */
+    @Override
     public InBoundEvent<E> unsubscribe(String name, String group) {
         return this.unsubscribe(getKey(name, group));
     }
@@ -114,7 +118,7 @@ public class EventHandler<E> {
      * @param name 事件名称
      * @return boolean
      */
-    public boolean containsName(String name) {
+    public boolean containsEvent(String name) {
         return observerMap.containsKey(name);
     }
 
@@ -125,8 +129,8 @@ public class EventHandler<E> {
      * @param group 组名
      * @return boolean
      */
-    public boolean containsName(String name, String group) {
-        return this.containsName(getKey(name, group));
+    public boolean containsEvent(String name, String group) {
+        return this.containsEvent(getKey(name, group));
     }
 
     /**

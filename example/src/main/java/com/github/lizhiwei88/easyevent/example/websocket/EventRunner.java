@@ -17,7 +17,10 @@
 package com.github.lizhiwei88.easyevent.example.websocket;
 
 import com.github.lizhiwei88.easyevent.core.EventDispatcher;
-import com.github.lizhiwei88.easyevent.example.websocket.event.BroadcastEvent;
+import com.github.lizhiwei88.easyevent.example.websocket.event.out.BroadcastEvent;
+import com.github.lizhiwei88.easyevent.example.websocket.event.out.ClientBroadcastEvent;
+import com.github.lizhiwei88.easyevent.example.websocket.event.out.DefaultBroadcastEvent;
+import com.github.lizhiwei88.easyevent.example.websocket.event.out.VIPBroadcastEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -48,6 +52,9 @@ public class EventRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         BroadcastEvent broadcastEvent = new BroadcastEvent("custom parameter");
+        VIPBroadcastEvent vipBroadcastEvent = new VIPBroadcastEvent("custom parameter");
+        DefaultBroadcastEvent defaultBroadcastEvent = new DefaultBroadcastEvent("custom parameter");
+        ClientBroadcastEvent clientBroadcastEvent = new ClientBroadcastEvent("123");
 
         ScheduledThreadPoolExecutor executorService = new ScheduledThreadPoolExecutor(1, r -> {
             Thread thread = new Thread(r);
@@ -55,9 +62,27 @@ public class EventRunner implements ApplicationRunner {
             return thread;
         });
 
-        executorService.scheduleAtFixedRate(() -> {
+
+        ScheduledFuture<?> scheduledFuture = executorService.scheduleAtFixedRate(() -> {
             logger.info("schedule...");
-            eventDispatcher.publish(broadcastEvent);
+            // 通知所有人
+            eventDispatcher.publishAll(broadcastEvent);
+
+            // 指定监听组
+            eventDispatcher.publish("vip", vipBroadcastEvent);
+
+            // 通知默认组
+            eventDispatcher.publish(defaultBroadcastEvent);
+
+            // 指定监听者名称
+            eventDispatcher.publish("123", "vip", clientBroadcastEvent);
         }, 10, 3, TimeUnit.SECONDS);
+
+        try {
+            scheduledFuture.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
