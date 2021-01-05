@@ -23,7 +23,7 @@ EasyEvent用于在异步场景下,对监听对象进行事件的通知处理.  �
 <dependency>
     <groupId>com.github.lizhiwei88</groupId>
     <artifactId>easyevent-core</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
 </dependency>
 ```
 
@@ -65,6 +65,7 @@ public class CustomOutBoundEvent implements OutBoundEvent<Client> {
 /**
 * 定义监听的事件 通过注解自动加载到EventHandler中
 */
+// @EasyEvent(value = "login", group= "group")
 @EasyEvent("login")
 public class LoginInBoundEvent implements InBoundEvent<WebSocketSession> {
 
@@ -97,7 +98,8 @@ public class DemoClass {
      * @param client 实现OutBoundEvent
      */
     public void addClientToEventDispatcher(Client client) {
-        eventDispatcher.subscribe(client);
+        // eventDispatcher.subscribe("name", "group", client);
+        eventDispatcher.subscribe("name", client);
     }
 
     /**
@@ -105,7 +107,9 @@ public class DemoClass {
      * @param outBoundEvent 自定义的事件
      */
     public void publishToClient(OutBoundEvent<Client> outBoundEvent) {
-        eventDispatcher.publish(outBoundEvent);
+        // eventDispatcher.publish("group", outBoundEvent); // 发布指定监听组
+        // eventDispatcher.publishAll(outBoundEvent); // 发布全部监听组
+        eventDispatcher.publish(outBoundEvent); // 发布默认监听组
     }
 
     /**
@@ -113,7 +117,8 @@ public class DemoClass {
      * @param inBoundEvent
      */
     public void addEventToEventHandler(InBoundEvent<Client> inBoundEvent) {
-        eventHandler.subscribe(inBoundEvent);
+        // eventHandler.subscribe("name", "group", inBoundEvent);
+        eventHandler.subscribe("name", inBoundEvent);
     }
 
     /**
@@ -123,6 +128,7 @@ public class DemoClass {
      * @param parameter 参数
      */
     public void onEvent(String eventType, Client client, Object parameter) {
+        // eventHandler.onEvent(eventType , "group", client, parameter);
         eventHandler.onEvent(eventType ,client, parameter);
     }
 }
@@ -134,7 +140,7 @@ public class DemoClass {
 <dependency>
     <groupId>com.github.lizhiwei88</groupId>
     <artifactId>easyevent-spring-boot-starter</artifactId>
-    <version>0.2</version>
+    <version>0.3</version>
 </dependency>
 ```
 
@@ -183,14 +189,18 @@ public class Service {
     * 订阅. client客户. 例如: WebsocketSession 或 Netty下的Channel
     */
     public void subscribe(String name, CLient client) {
-        eventDispatcher.subscribe(name, client);
+        // eventDispatcher.subscribe("name", "group", client);
+        eventDispatcher.subscribe("name", client);
     }
     
     /**
     * 取消订阅
     */
     public void unsubscribe(String name) {
-        eventDispatcher.unsubscribe(name);
+        // eventDispatcher.unsubscribeDefaultGroup() // 取消全部默认组
+        // eventDispatcher.unsubscribeGroup("group") // 取消全部指定组
+        // eventDispatcher.unsubscribe(name, "group"); // 取消订阅指定组中的name
+        eventDispatcher.unsubscribe(name); // 取消订阅默认组中的name
     }
 
     /**
@@ -199,7 +209,9 @@ public class Service {
     */
     public void publish() {
         CustomOutBoundEvent outBoundEvent = new CustomOutBoundEvent(18, "jack");
-        eventDispatcher.publish(outBoundEvent);
+        // eventDispatcher.publish("group", outBoundEvent); // 发布指定监听组
+        // eventDispatcher.publishAll(outBoundEvent); // 发布全部监听组
+        eventDispatcher.publish(outBoundEvent); // 发布默认监听组
     }
 
 }
@@ -211,6 +223,7 @@ public class Service {
 /**
 * 定义监听的事件 通过注解自动加载到EventHandler中
 */
+// @EasyEvent(value = "login", group= "group")
 @EasyEvent("login")
 public class LoginInBoundEvent implements InBoundEvent<WebSocketSession> {
 
@@ -247,6 +260,7 @@ public class WebsocketService {
         /**
         * 指定事件类型 触发事件
         */
+        // eventHandler.onEvent(message.eventType , "group", session, message);
         eventHandler.onEvent(message.eventType, session, message);
     }
 
