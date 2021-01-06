@@ -45,17 +45,22 @@ public class WebsocketService extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         logger.info("connection successfully");
+        // 连接后加入默认组
+        // 登录成功移动到vip组
         eventDispatcher.subscribe(session.getId(), session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         logger.info("connection closed");
-        eventDispatcher.unsubscribe(session.getId());
+        // 从vip组移除
+        eventDispatcher.unsubscribe(session.getId(), "vip");
     }
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        // 分组形式
+//        eventHandler.onEvent("login", "base", session, message);
         eventHandler.onEvent("login", session, message);
     }
 }

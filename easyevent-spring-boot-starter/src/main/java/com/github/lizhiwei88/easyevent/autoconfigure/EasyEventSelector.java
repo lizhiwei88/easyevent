@@ -25,8 +25,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.StringUtils;
 
-import java.util.Map;
-
 /**
  * @author lizhiwei
  **/
@@ -44,14 +42,16 @@ public class EasyEventSelector implements ApplicationContextAware, SmartInitiali
 
     @Override
     public void afterSingletonsInstantiated() {
-        Map<String, Object> beansWithAnnotationMap = this.applicationContext.getBeansWithAnnotation(EasyEvent.class);
-        for (Map.Entry<String, Object> entry : beansWithAnnotationMap.entrySet()) {
-            InBoundEvent inBoundEvent = (InBoundEvent) entry.getValue();
-            String eventName = entry.getKey();
+        String[] beanNames = applicationContext.getBeanNamesForAnnotation(EasyEvent.class);
+        for (String beanName : beanNames) {
+            Object bean = applicationContext.getBean(beanName);
+            EasyEvent annotation = bean.getClass().getAnnotation(EasyEvent.class);
+            String eventName = annotation.value();
+            String eventGroup = annotation.group() == "" ? null : annotation.group();
             if (StringUtils.isEmpty(eventName)) {
-                eventName = inBoundEvent.getClass().getSimpleName();
+                eventName = bean.getClass().getSimpleName();
             }
-            eventHandler.subscribe(eventName, inBoundEvent);
+            eventHandler.subscribe(eventName, eventGroup, (InBoundEvent) bean);
         }
     }
 

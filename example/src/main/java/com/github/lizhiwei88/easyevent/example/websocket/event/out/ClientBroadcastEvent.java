@@ -14,25 +14,31 @@
  * limitations under the License.
  */
 
-package com.github.lizhiwei88.easyevent.example.websocket.event;
+package com.github.lizhiwei88.easyevent.example.websocket.event.out;
 
-import com.github.lizhiwei88.easyevent.annotation.EasyEvent;
-import com.github.lizhiwei88.easyevent.event.InBoundEvent;
+import com.github.lizhiwei88.easyevent.event.OutBoundEvent;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
 
 /**
+ * 指定客户事件
+ *
  * @author lizhiwei
  **/
-@EasyEvent("login")
-public class LoginEasyEvent implements InBoundEvent<WebSocketSession> {
+public class ClientBroadcastEvent implements OutBoundEvent<WebSocketSession> {
+
+    private String p;
+
+    public ClientBroadcastEvent(String p) {
+        this.p = p;
+    }
 
     @Override
-    public void execute(WebSocketSession client, Object parameter) {
+    public void execute(WebSocketSession client) {
         try {
-            client.sendMessage(new TextMessage("login event"));
+            client.sendMessage(new TextMessage("=== you are " + p + ". ClientBroadcastEvent"));
         } catch (IOException e) {
             e.printStackTrace();
         }

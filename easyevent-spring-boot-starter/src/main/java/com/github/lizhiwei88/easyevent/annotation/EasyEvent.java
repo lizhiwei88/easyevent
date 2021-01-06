@@ -31,5 +31,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface EasyEvent {
 
-    String value();
+    String value() default "";
+
+    String group() default "";
 }
